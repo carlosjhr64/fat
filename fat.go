@@ -5,7 +5,7 @@ import "math"
 import "fmt"
 import "sort"
 
-var VERSION string = "0.0.0"
+var VERSION string = "0.0.1"
 
 // Float Slice should be sorted for best results.
 // Replaces points within delta of eachother by it's average.
@@ -13,9 +13,10 @@ var VERSION string = "0.0.0"
 func Cluster(scatter []float64, delta float64) []float64 {
   var cluster []float64
   var avg, previous float64 = 0.0, 0.0
+  var i int = 0
 
   for {
-    cluster = make([]float64, 0)
+    cluster = make([]float64, len(scatter))
     for _, a := range(scatter) {
       s, n := 0.0, 0.0
       for _, b := range(scatter) {
@@ -25,14 +26,17 @@ func Cluster(scatter []float64, delta float64) []float64 {
         }
       }
       avg = s/n
-      if avg != previous { cluster = append(cluster, avg) }
+      if avg != previous {
+        cluster[i] = avg
+        i++
+      }
       previous = avg
     }
     if len(cluster) == len(scatter) { break }
-    scatter, avg, previous = cluster, 0.0, 0.0
+    scatter, avg, previous, i = cluster, 0.0, 0.0, 0
   }
 
-  return cluster
+  return cluster[:i]
 }
 
 type by_near struct {
