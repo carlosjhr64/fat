@@ -5,7 +5,7 @@ import "math"
 import "fmt"
 import "sort"
 
-var VERSION string = "0.1.0"
+var VERSION string = "0.2.0"
 
 // Float Slice should be sorted for best results.
 // Replaces points within delta of eachother by it's average.
@@ -76,4 +76,11 @@ func Sum(a []float64) float64 {
   var i int; n := len(a); sum := 0.0
   for i=0; i<n; i++ { sum += a[i] }
   return sum
+}
+
+func Copy(a []float64) []float64 {
+  var i, n int = 0, len(a)
+  b := make([]float64, n)
+  for ; i< n;  i++ { b[i] = a[i] }
+  return b
 }
