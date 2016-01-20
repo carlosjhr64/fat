@@ -5,7 +5,7 @@ import "math"
 import "fmt"
 import "sort"
 
-var VERSION string = "0.0.2"
+var VERSION string = "0.0.3"
 
 // Float Slice should be sorted for best results.
 // Replaces points within delta of eachother by it's average.
@@ -21,7 +21,7 @@ func Cluster(scatter []float64, delta float64) []float64 {
     for _, a = range(scatter) {
       sum, n = 0.0, 0.0
       for _, b = range(scatter) {
-        if math.Abs((a - b)/b) < delta {
+        if math.Abs((a - b)/a) < delta {
           n += 1.0
           sum += b
         }
