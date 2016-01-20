@@ -39,3 +39,10 @@ func TestJoin(test *testing.T) {
     bad(Join)
   }
 }
+
+func TestSum(test *testing.T) {
+  bad := test.Error
+  a := gimea()
+  s := Sum(a)
+  if s != 102.0 { bad("Sum") }
+}

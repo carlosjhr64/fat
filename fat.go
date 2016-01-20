@@ -5,7 +5,7 @@ import "math"
 import "fmt"
 import "sort"
 
-var VERSION string = "0.0.3"
+var VERSION string = "0.1.0"
 
 // Float Slice should be sorted for best results.
 // Replaces points within delta of eachother by it's average.
@@ -70,4 +70,10 @@ func Join(a []float64, format string, sep string) string {
     s += sprintf(format, a[i])
   }
   return s
+}
+
+func Sum(a []float64) float64 {
+  var i int; n := len(a); sum := 0.0
+  for i=0; i<n; i++ { sum += a[i] }
+  return sum
 }
