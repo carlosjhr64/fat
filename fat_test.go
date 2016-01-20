@@ -46,3 +46,12 @@ func TestSum(test *testing.T) {
   s := Sum(a)
   if s != 102.0 { bad("Sum") }
 }
+
+func TestCopy(test *testing.T) {
+  bad := test.Error
+  a := gimea()
+  b := Copy(a)
+  if &a == &b { bad("Copy has same address.") }
+  if len(a) != 5 { bad("Copy, different lengths.") }
+  if a[0]!=10.0 || a[4] != 31.0 { bad("Just bad Copy") }
+}
