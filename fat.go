@@ -75,7 +75,7 @@ func Agglomerate(scatter []float64, delta float64) []float64 {
     for i=0; i<index; i++ { scatter[i] = cluster[i] }
     size = index
   }
-  return scatter[0:size]
+  return scatter[:size]
 }
 
 type by_near struct {
