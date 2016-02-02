@@ -5,7 +5,7 @@ import "math"
 import "fmt"
 import "sort"
 
-var VERSION string = "0.3.0"
+var VERSION string = "0.5.0"
 
 // Float Slice should be sorted for best results.
 // Replaces points within delta of eachother by it's average.
@@ -40,7 +40,12 @@ func Cluster(scatter []float64, delta float64) []float64 {
   return cluster
 }
 
+
+var Rounder float64 = 10000.0
 func Agglomerate(scatter []float64, delta float64) []float64 {
+  // Very sensitive to rounding errors...
+  // Ruby's implementation of the exact same algorithm
+  // yielded different lists until rounding was introduced.
   size := len(scatter)
   cluster := make([]float64, size)
   var index, i, j int
@@ -63,7 +68,7 @@ func Agglomerate(scatter []float64, delta float64) []float64 {
       } else {
         avg += math.Log(a)
         n += 1.0
-        avg = math.Exp(avg/n)
+        avg = float64(int(0.5 + Rounder*math.Exp(avg/n)))/Rounder
       }
       if avg != previous {
         cluster[index] = avg
