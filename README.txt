@@ -2,7 +2,7 @@ package fat // import "github.com/carlosjhr64/fat"
 
 Float Array Tricks
 var Rounder float64 = 10000.0
-var VERSION string = "0.5.0"
+var VERSION string = "1.0.0"
 func Agglomerate(scatter []float64, delta float64) []float64
 func Cluster(scatter []float64, delta float64) []float64
 func Copy(a []float64) []float64

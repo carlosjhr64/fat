@@ -16,7 +16,7 @@ func TestCluster(test *testing.T) {
   bad := test.Error
   a := gimea()
   // Want (12,10) and (29,31) to be considered a cluster
-  delta := (12.1 - 9.9) / 10.0
+  delta := 12.1 - 9.9
   b := Cluster(a, delta)
   if len(b) != 3 { bad("Cluster len.") }
   if b[0] != 11.0 || b[1] != 20.0 || b[2] != 30.0 { bad("Cluster values.") }
